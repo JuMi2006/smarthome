@@ -109,8 +109,9 @@ and longitude (e.g. lon = 10.4476) in the smarthome.conf file!
 
 .. raw:: html
 
-   <pre># sh.sun.pos([offset]) specifies an minute offset.
+   <pre># sh.sun.pos([offset], [degree=False]) specifies an optional minute offset and if the return values should be degrees instead of the default radians.
    azimut, altitude = sh.sun.pos() # return the current sun position
+   azimut, altitude = sh.sun.pos(degree=True) # return the current sun position in degrees
    azimut, altitude = sh.sun.pos(30) # return the sun position 30 minutes
                                      # in the future.
 
@@ -149,11 +150,12 @@ sh.return\_items()
 Returns all item objects.
 ``for item in sh.return_items():     logger.info(item.id())``
 
-sh.match\_items(regexpath)
+sh.match\_items(regex)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Returns all items matching a regular expression path.
+Returns all items matching a regular expression path and optional attribute.
 ``for item in sh.match_items('*.lights'):     # selects all items ending with 'lights'     logger.info(item.id())``
+``for item in sh.match_items('*.lights:special'):     # selects all items ending with 'lights' and attribute 'special'     logger.info(item.id())``
 
 sh.find\_items(configattribute)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
